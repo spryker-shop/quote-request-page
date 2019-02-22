@@ -4,9 +4,15 @@
     title: 'quote_request_page.quote_request' | trans,
     quoteRequestForm: _view.quoteRequestForm,
     isQuoteRequestCancelable: _view.isQuoteRequestCancelable,
-    cart: _view.cart | default,
-    cartItems: _view.cartItems | default
+    quoteRequest: _view.quoteRequestForm.vars.value,
+    cart: null,
+    cartItems: null
 } %}
+
+{% if data.quoteRequest.latestVersion %}
+    {% set data.cart = data.quoteRequest.latestVersion.quote %}
+    {% set data.artItems = data.quoteRequest.latestVersion.quote.items %}
+{% endif %}
 
 {% block breadcrumbs %}
     {% include molecule('breadcrumb') with {
@@ -21,7 +27,7 @@
                     url: url('quote-request')
                 },
                 {
-                    label: '#' ~ data.quoteRequestForm.vars.value.quoteRequestReference,
+                    label: '#' ~ data.quoteRequest.quoteRequestReference,
                 }
             ]
         }
@@ -53,8 +59,8 @@
 
             <div class="col col--sm-12 col--xl-4">
                 <div class="box">
-                    <p>{{ 'quote_request_page.quote_request.labels.date' | trans }}: <b>{{ data.quoteRequestForm.vars.value.createdAt | date('d.m.Y H:i') }}</b></p>
-                    <p>{{ 'quote_request_page.quote_request.labels.status' | trans }}: <b>{{ ('quote_request.status.' ~ data.quoteRequestForm.vars.value.status) | trans }}</b></p>
+                    <p>{{ 'quote_request_page.quote_request.labels.date' | trans }}: <b>{{ data.quoteRequest.createdAt | date('d.m.Y H:i') }}</b></p>
+                    <p>{{ 'quote_request_page.quote_request.labels.status' | trans }}: <b>{{ ('quote_request.status.' ~ data.quoteRequest.status) | trans }}</b></p>
                     <p>{{ 'quote_request_page.quote_request.labels.valid_till' | trans }}:</p>
                     <p>{{ 'quote_request_page.quote_request.labels.history' | trans }}:</p>
                 </div>
@@ -91,7 +97,7 @@
 
                     {% if data.isQuoteRequestCancelable %}
                         <hr/>
-                        <a class="button button--expand button--cancel" href="{{ path('quote-request/cancel', { quoteRequestReference: (data.quoteRequestForm.vars.value.quoteRequestReference) }) }}">
+                        <a class="button button--expand button--cancel" href="{{ path('quote-request/cancel', { quoteRequestReference: (data.quoteRequest.quoteRequestReference) }) }}">
                             {{ 'quote_request_page.quote_request.actions.cancel' | trans }}
                         </a>
                     {% endif %}
