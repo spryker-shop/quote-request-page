@@ -7,11 +7,12 @@
 
 namespace SprykerShop\Yves\QuoteRequestPage\CheckoutStep;
 
-use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
+use Spryker\Yves\StepEngine\Dependency\Step\AbstractBaseStep;
+use Spryker\Yves\StepEngine\Dependency\Step\StepWithBreadcrumbInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-class SaveRFQStep extends \Spryker\Yves\StepEngine\Dependency\Step\AbstractBaseStep implements \Spryker\Yves\StepEngine\Dependency\Step\StepWithBreadcrumbInterface
+class SaveRequestForQuoteStep extends AbstractBaseStep implements StepWithBreadcrumbInterface
 {
     /**
      * Requirements for this step, return true when satisfied.
@@ -20,9 +21,9 @@ class SaveRFQStep extends \Spryker\Yves\StepEngine\Dependency\Step\AbstractBaseS
      *
      * @return bool
      */
-    public function preCondition(AbstractTransfer $quoteTransfer)
+    public function preCondition(AbstractTransfer $quoteTransfer): bool
     {
-        return !$this->isCartEmpty($quoteTransfer);
+        return (bool)count($quoteTransfer->getItems());
     }
 
     /**
@@ -32,7 +33,7 @@ class SaveRFQStep extends \Spryker\Yves\StepEngine\Dependency\Step\AbstractBaseS
      *
      * @return bool
      */
-    public function requireInput(AbstractTransfer $dataTransfer)
+    public function requireInput(AbstractTransfer $dataTransfer): bool
     {
         return true;
     }
@@ -57,27 +58,17 @@ class SaveRFQStep extends \Spryker\Yves\StepEngine\Dependency\Step\AbstractBaseS
      *
      * @return bool
      */
-    public function postCondition(AbstractTransfer $dataTransfer)
+    public function postCondition(AbstractTransfer $dataTransfer): bool
     {
         return false;
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return bool
-     */
-    protected function isCartEmpty(QuoteTransfer $quoteTransfer)
-    {
-        return count($quoteTransfer->getItems()) === 0;
     }
 
     /**
      * @return string
      */
-    public function getBreadcrumbItemTitle()
+    public function getBreadcrumbItemTitle(): string
     {
-        return 'Save RFQ';
+        return 'Save RFQ';// ToDo glossary
     }
 
     /**
@@ -85,7 +76,7 @@ class SaveRFQStep extends \Spryker\Yves\StepEngine\Dependency\Step\AbstractBaseS
      *
      * @return bool
      */
-    public function isBreadcrumbItemEnabled(AbstractTransfer $dataTransfer)
+    public function isBreadcrumbItemEnabled(AbstractTransfer $dataTransfer): bool
     {
         return false;
     }
@@ -95,7 +86,7 @@ class SaveRFQStep extends \Spryker\Yves\StepEngine\Dependency\Step\AbstractBaseS
      *
      * @return bool
      */
-    public function isBreadcrumbItemHidden(AbstractTransfer $dataTransfer)
+    public function isBreadcrumbItemHidden(AbstractTransfer $dataTransfer): bool
     {
         return false;
     }
