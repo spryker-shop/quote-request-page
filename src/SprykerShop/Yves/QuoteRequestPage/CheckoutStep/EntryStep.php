@@ -7,11 +7,11 @@
 
 namespace SprykerShop\Yves\QuoteRequestPage\CheckoutStep;
 
-use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
+use Spryker\Yves\StepEngine\Dependency\Step\AbstractBaseStep;
 use Symfony\Component\HttpFoundation\Request;
 
-class EntryStep extends \Spryker\Yves\StepEngine\Dependency\Step\AbstractBaseStep
+class EntryStep extends AbstractBaseStep
 {
     /**
      * Requirements for this step, return true when satisfied.
@@ -20,9 +20,9 @@ class EntryStep extends \Spryker\Yves\StepEngine\Dependency\Step\AbstractBaseSte
      *
      * @return bool
      */
-    public function preCondition(AbstractTransfer $quoteTransfer)
+    public function preCondition(AbstractTransfer $quoteTransfer): bool
     {
-        return !$this->isCartEmpty($quoteTransfer);
+        return (bool)count($quoteTransfer->getItems());
     }
 
     /**
@@ -32,7 +32,7 @@ class EntryStep extends \Spryker\Yves\StepEngine\Dependency\Step\AbstractBaseSte
      *
      * @return bool
      */
-    public function requireInput(AbstractTransfer $dataTransfer)
+    public function requireInput(AbstractTransfer $dataTransfer): bool
     {
         return false;
     }
@@ -57,18 +57,8 @@ class EntryStep extends \Spryker\Yves\StepEngine\Dependency\Step\AbstractBaseSte
      *
      * @return bool
      */
-    public function postCondition(AbstractTransfer $quoteTransfer)
+    public function postCondition(AbstractTransfer $quoteTransfer): bool
     {
         return true;
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return bool
-     */
-    protected function isCartEmpty(QuoteTransfer $quoteTransfer)
-    {
-        return count($quoteTransfer->getItems()) === 0;
     }
 }
