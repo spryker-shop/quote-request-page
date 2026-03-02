@@ -70,9 +70,6 @@ class DeliveryDateMetadataFieldPlugin extends AbstractPlugin implements QuoteReq
         return $builder;
     }
 
-    /**
-     * @return \Symfony\Component\Validator\Constraint
-     */
     protected function createDeliveryDateConstraint(): Constraint
     {
         return new Callback([
@@ -88,9 +85,6 @@ class DeliveryDateMetadataFieldPlugin extends AbstractPlugin implements QuoteReq
         ]);
     }
 
-    /**
-     * @return \Symfony\Component\Form\CallbackTransformer
-     */
     protected function createDateTimeModelTransformer(): CallbackTransformer
     {
         return new CallbackTransformer(

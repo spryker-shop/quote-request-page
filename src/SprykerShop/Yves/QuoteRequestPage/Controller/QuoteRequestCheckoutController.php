@@ -21,11 +21,6 @@ class QuoteRequestCheckoutController extends QuoteRequestAbstractController
      */
     protected const GLOSSARY_KEY_QUOTE_REQUEST_CONVERTED_TO_CART_SUCCESS = 'quote_request.validation.converted_to_cart.success';
 
-    /**
-     * @param string $quoteRequestReference
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     public function convertToCartAction(string $quoteRequestReference): RedirectResponse
     {
         $response = $this->executeConvertToCartActionAction($quoteRequestReference);
@@ -33,11 +28,6 @@ class QuoteRequestCheckoutController extends QuoteRequestAbstractController
         return $response;
     }
 
-    /**
-     * @param string $quoteRequestReference
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     protected function executeConvertToCartActionAction(string $quoteRequestReference): RedirectResponse
     {
         $quoteRequestTransfer = $this->getCompanyUserQuoteRequestByReference($quoteRequestReference);
@@ -59,11 +49,6 @@ class QuoteRequestCheckoutController extends QuoteRequestAbstractController
         return $this->redirectResponseInternal(static::ROUTE_CART);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteResponseTransfer $quoteResponseTransfer
-     *
-     * @return void
-     */
     protected function handleQuoteResponseErrors(QuoteResponseTransfer $quoteResponseTransfer): void
     {
         foreach ($quoteResponseTransfer->getErrors() as $errorTransfer) {

@@ -75,11 +75,6 @@ class QuoteRequestPageControllerProvider extends AbstractYvesControllerProvider
      */
     protected const QUOTE_REQUEST_REFERENCE_REGEX = '[a-zA-Z0-9-_]+';
 
-    /**
-     * @param \Silex\Application $app
-     *
-     * @return void
-     */
     protected function defineControllers(Application $app): void
     {
         $this->addQuoteRequestRoute()

@@ -17,9 +17,6 @@ class ItemExtractor implements ItemExtractorInterface
      */
     protected $quoteChecker;
 
-    /**
-     * @param \SprykerShop\Yves\QuoteRequestPage\Checker\QuoteCheckerInterface $quoteChecker
-     */
     public function __construct(QuoteCheckerInterface $quoteChecker)
     {
         $this->quoteChecker = $quoteChecker;

@@ -29,11 +29,6 @@ class ShipmentGrouper implements ShipmentGrouperInterface
      */
     protected $quoteChecker;
 
-    /**
-     * @param \SprykerShop\Yves\QuoteRequestPage\Dependency\Service\QuoteRequestPageToShipmentServiceInterface $shipmentService
-     * @param \SprykerShop\Yves\QuoteRequestPage\Extractor\ItemExtractorInterface $itemExtractor
-     * @param \SprykerShop\Yves\QuoteRequestPage\Checker\QuoteCheckerInterface $quoteChecker
-     */
     public function __construct(
         QuoteRequestPageToShipmentServiceInterface $shipmentService,
         ItemExtractorInterface $itemExtractor,

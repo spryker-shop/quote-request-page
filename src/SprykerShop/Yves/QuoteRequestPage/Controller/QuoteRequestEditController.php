@@ -100,11 +100,6 @@ class QuoteRequestEditController extends QuoteRequestAbstractController
         ];
     }
 
-    /**
-     * @param string $quoteRequestReference
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     public function sendToUserAction(string $quoteRequestReference): RedirectResponse
     {
         $response = $this->executeSendToUserAction($quoteRequestReference);
@@ -112,11 +107,6 @@ class QuoteRequestEditController extends QuoteRequestAbstractController
         return $response;
     }
 
-    /**
-     * @param string $quoteRequestReference
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     protected function executeSendToUserAction(string $quoteRequestReference): RedirectResponse
     {
         $companyUserTransfer = $this->getFactory()
@@ -142,12 +132,6 @@ class QuoteRequestEditController extends QuoteRequestAbstractController
         ]);
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormInterface $quoteRequestForm
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     protected function processQuoteRequestForm(FormInterface $quoteRequestForm, Request $request): RedirectResponse
     {
         /** @var \Generated\Shared\Transfer\QuoteRequestTransfer $quoteRequestTransfer */

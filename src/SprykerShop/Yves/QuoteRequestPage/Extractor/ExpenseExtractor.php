@@ -24,9 +24,6 @@ class ExpenseExtractor implements ExpenseExtractorInterface
      */
     protected $shipmentService;
 
-    /**
-     * @param \SprykerShop\Yves\QuoteRequestPage\Dependency\Service\QuoteRequestPageToShipmentServiceInterface $shipmentService
-     */
     public function __construct(QuoteRequestPageToShipmentServiceInterface $shipmentService)
     {
         $this->shipmentService = $shipmentService;

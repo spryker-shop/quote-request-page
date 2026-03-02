@@ -11,10 +11,5 @@ use Generated\Shared\Transfer\CustomerTransfer;
 
 interface QuoteRequestPageToPersistentCartClientInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
-     * @return void
-     */
     public function reloadQuoteForCustomer(CustomerTransfer $customerTransfer): void;
 }

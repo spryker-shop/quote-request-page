@@ -34,11 +34,6 @@ class QuoteChecker implements QuoteCheckerInterface
         return true;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
-     *
-     * @return bool
-     */
     public function isItemWithShipmentAddress(ItemTransfer $itemTransfer): bool
     {
         return $itemTransfer->getShipment()

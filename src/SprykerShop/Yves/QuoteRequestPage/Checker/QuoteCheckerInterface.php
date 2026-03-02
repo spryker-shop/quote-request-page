@@ -21,10 +21,5 @@ interface QuoteCheckerInterface
      */
     public function isQuoteLevelShipmentUsed(QuoteTransfer $quoteTransfer): bool;
 
-    /**
-     * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
-     *
-     * @return bool
-     */
     public function isItemWithShipmentAddress(ItemTransfer $itemTransfer): bool;
 }

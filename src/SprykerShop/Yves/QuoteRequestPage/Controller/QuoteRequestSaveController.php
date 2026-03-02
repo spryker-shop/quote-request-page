@@ -32,9 +32,6 @@ class QuoteRequestSaveController extends QuoteRequestAbstractController
      */
     protected const PARAM_QUOTE_REQUEST_REFERENCE = 'quoteRequestReference';
 
-    /**
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     public function saveAction(): RedirectResponse
     {
         $quoteTransfer = $this->getFactory()->getCartClient()->getQuote();
@@ -65,9 +62,6 @@ class QuoteRequestSaveController extends QuoteRequestAbstractController
         return $this->redirectResponseInternal(QuoteRequestPageRouteProviderPlugin::ROUTE_NAME_QUOTE_REQUEST);
     }
 
-    /**
-     * @return void
-     */
     protected function reloadQuoteForCustomer(): void
     {
         $customerTransfer = $this->getFactory()->getCustomerClient()->getCustomer();

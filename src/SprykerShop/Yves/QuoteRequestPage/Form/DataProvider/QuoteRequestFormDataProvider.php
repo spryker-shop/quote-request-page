@@ -35,11 +35,6 @@ class QuoteRequestFormDataProvider
      */
     protected $config;
 
-    /**
-     * @param \SprykerShop\Yves\QuoteRequestPage\Dependency\Client\QuoteRequestPageToCompanyUserClientInterface $companyUserClient
-     * @param \SprykerShop\Yves\QuoteRequestPage\Dependency\Client\QuoteRequestPageToCartClientInterface $cartClient
-     * @param \SprykerShop\Yves\QuoteRequestPage\QuoteRequestPageConfig $config
-     */
     public function __construct(
         QuoteRequestPageToCompanyUserClientInterface $companyUserClient,
         QuoteRequestPageToCartClientInterface $cartClient,
@@ -50,11 +45,6 @@ class QuoteRequestFormDataProvider
         $this->config = $config;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteRequestTransfer|null $quoteRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteRequestTransfer
-     */
     public function getData(?QuoteRequestTransfer $quoteRequestTransfer): QuoteRequestTransfer
     {
         if (!$quoteRequestTransfer) {
@@ -64,9 +54,6 @@ class QuoteRequestFormDataProvider
         return $quoteRequestTransfer;
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\QuoteRequestTransfer
-     */
     protected function createQuoteRequestTransfer(): QuoteRequestTransfer
     {
         $quoteRequestVersionTransfer = (new QuoteRequestVersionTransfer())

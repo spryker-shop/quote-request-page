@@ -72,9 +72,6 @@ class QuoteRequestPageRouteProviderPluginTest extends Unit
         }
     }
 
-    /**
-     * @return array
-     */
     public function referenceProvider(): array
     {
         return [

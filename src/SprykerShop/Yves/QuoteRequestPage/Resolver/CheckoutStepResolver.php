@@ -36,10 +36,6 @@ class CheckoutStepResolver implements CheckoutStepResolverInterface
      */
     protected $saveRequestForQuoteStep;
 
-    /**
-     * @param \Spryker\Yves\StepEngine\Dependency\Step\StepInterface $entryStep
-     * @param \Spryker\Yves\StepEngine\Dependency\Step\StepInterface $saveRequestForQuoteStep
-     */
     public function __construct(StepInterface $entryStep, StepInterface $saveRequestForQuoteStep)
     {
         $this->entryStep = $entryStep;

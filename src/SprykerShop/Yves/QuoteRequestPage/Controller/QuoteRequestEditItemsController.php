@@ -52,11 +52,6 @@ class QuoteRequestEditItemsController extends QuoteRequestAbstractController
         return $this->view($response, [], '@QuoteRequestPage/views/quote-request-edit-items-confirm/quote-request-edit-items-confirm.twig');
     }
 
-    /**
-     * @param string $quoteRequestReference
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     protected function executeIndexAction(string $quoteRequestReference): RedirectResponse
     {
         $quoteTransfer = $this->getFactory()->getCartClient()->getQuote();
@@ -104,11 +99,6 @@ class QuoteRequestEditItemsController extends QuoteRequestAbstractController
         ];
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteRequestTransfer $quoteRequestTransfer
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     protected function convertQuoteRequest(QuoteRequestTransfer $quoteRequestTransfer): RedirectResponse
     {
         $quoteResponseTransfer = $this->getFactory()
@@ -124,11 +114,6 @@ class QuoteRequestEditItemsController extends QuoteRequestAbstractController
         return $this->redirectResponseInternal(static::ROUTE_CART);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteResponseTransfer $quoteResponseTransfer
-     *
-     * @return void
-     */
     protected function handleQuoteResponseErrors(QuoteResponseTransfer $quoteResponseTransfer): void
     {
         foreach ($quoteResponseTransfer->getErrors() as $quoteErrorTransfer) {

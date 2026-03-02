@@ -21,11 +21,6 @@ class QuoteRequestDeleteController extends QuoteRequestAbstractController
      */
     protected const GLOSSARY_KEY_QUOTE_REQUEST_SUCCESS_CANCELED = 'quote_request.validation.success.canceled';
 
-    /**
-     * @param string $quoteRequestReference
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     public function cancelAction(string $quoteRequestReference): RedirectResponse
     {
         $quoteRequestFilterTransfer = (new QuoteRequestFilterTransfer())

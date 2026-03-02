@@ -21,11 +21,6 @@ class QuoteRequestReviseController extends QuoteRequestAbstractController
      */
     protected const GLOSSARY_KEY_QUOTE_REQUEST_VERSION_CREATED = 'quote_request_page.quote_request_version.created';
 
-    /**
-     * @param string $quoteRequestReference
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     public function indexAction(string $quoteRequestReference): RedirectResponse
     {
         $companyUserTransfer = $this->getFactory()

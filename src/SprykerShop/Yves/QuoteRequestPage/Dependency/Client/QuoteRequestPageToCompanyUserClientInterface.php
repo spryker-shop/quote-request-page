@@ -11,8 +11,5 @@ use Generated\Shared\Transfer\CompanyUserTransfer;
 
 interface QuoteRequestPageToCompanyUserClientInterface
 {
-    /**
-     * @return \Generated\Shared\Transfer\CompanyUserTransfer|null
-     */
     public function findCompanyUser(): ?CompanyUserTransfer;
 }

@@ -79,11 +79,6 @@ class QuoteRequestCreateController extends QuoteRequestAbstractController
         return $this->getViewParameters($quoteRequestForm);
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormInterface $quoteRequestForm
-     *
-     * @return array
-     */
     protected function getViewParameters(FormInterface $quoteRequestForm): array
     {
         /** @var \Generated\Shared\Transfer\QuoteRequestTransfer $quoteRequestTransfer */

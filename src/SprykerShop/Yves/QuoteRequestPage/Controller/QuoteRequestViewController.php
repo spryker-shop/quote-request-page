@@ -40,11 +40,6 @@ class QuoteRequestViewController extends QuoteRequestAbstractController
      */
     protected const PARAM_QUOTE_REQUEST_VERSION_REFERENCE = 'quote-request-version-reference';
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Spryker\Yves\Kernel\View\View
-     */
     public function indexAction(Request $request): View
     {
         $viewData = $this->executeIndexAction($request);
@@ -52,12 +47,6 @@ class QuoteRequestViewController extends QuoteRequestAbstractController
         return $this->view($viewData, [], '@QuoteRequestPage/views/quote-request-view/quote-request-view.twig');
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string $quoteRequestReference
-     *
-     * @return \Spryker\Yves\Kernel\View\View
-     */
     public function detailsAction(Request $request, string $quoteRequestReference): View
     {
         $viewData = $this->executeDetailsAction($request, $quoteRequestReference);
@@ -65,11 +54,6 @@ class QuoteRequestViewController extends QuoteRequestAbstractController
         return $this->view($viewData, [], '@QuoteRequestPage/views/quote-request-details/quote-request-details.twig');
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return array
-     */
     protected function executeIndexAction(Request $request): array
     {
         $companyUserTransfer = $this->getFactory()
@@ -90,12 +74,6 @@ class QuoteRequestViewController extends QuoteRequestAbstractController
         ];
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string $quoteRequestReference
-     *
-     * @return array
-     */
     protected function executeDetailsAction(Request $request, string $quoteRequestReference): array
     {
         $quoteRequestTransfer = $this->getCompanyUserQuoteRequestByReference($quoteRequestReference, true);
@@ -181,11 +159,6 @@ class QuoteRequestViewController extends QuoteRequestAbstractController
         return $versionReferences;
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Generated\Shared\Transfer\PaginationTransfer
-     */
     protected function getPaginationTransfer(Request $request): PaginationTransfer
     {
         return (new PaginationTransfer())

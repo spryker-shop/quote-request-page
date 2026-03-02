@@ -42,12 +42,6 @@ class QuoteRequestHandler implements QuoteRequestHandlerInterface
      */
     protected $customerClient;
 
-    /**
-     * @param \SprykerShop\Yves\QuoteRequestPage\Dependency\Client\QuoteRequestPageToQuoteRequestClientInterface $quoteRequestClient
-     * @param \SprykerShop\Yves\QuoteRequestPage\Dependency\Client\QuoteRequestPageToPersistentCartClientInterface $persistentCartClient
-     * @param \SprykerShop\Yves\QuoteRequestPage\Dependency\Client\QuoteRequestPageToQuoteClientInterface $quoteClient
-     * @param \SprykerShop\Yves\QuoteRequestPage\Dependency\Client\QuoteRequestPageToCustomerClientInterface $customerClient
-     */
     public function __construct(
         QuoteRequestPageToQuoteRequestClientInterface $quoteRequestClient,
         QuoteRequestPageToPersistentCartClientInterface $persistentCartClient,
@@ -60,11 +54,6 @@ class QuoteRequestHandler implements QuoteRequestHandlerInterface
         $this->customerClient = $customerClient;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteRequestTransfer $quoteRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteRequestResponseTransfer
-     */
     public function createQuoteRequest(QuoteRequestTransfer $quoteRequestTransfer): QuoteRequestResponseTransfer
     {
         if (!$quoteRequestTransfer->getLatestVersion()->getQuote()->getItems()->count()) {
@@ -80,30 +69,17 @@ class QuoteRequestHandler implements QuoteRequestHandlerInterface
         return $quoteRequestResponseTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteRequestTransfer $quoteRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteRequestResponseTransfer
-     */
     public function updateQuoteRequest(QuoteRequestTransfer $quoteRequestTransfer): QuoteRequestResponseTransfer
     {
         return $this->quoteRequestClient->updateQuoteRequest($quoteRequestTransfer);
     }
 
-    /**
-     * @return void
-     */
     protected function clearQuote(): void
     {
         $this->quoteClient->clearQuote();
         $this->persistentCartClient->reloadQuoteForCustomer($this->customerClient->getCustomer());
     }
 
-    /**
-     * @param string $message
-     *
-     * @return \Generated\Shared\Transfer\QuoteRequestResponseTransfer
-     */
     protected function getErrorResponse(string $message): QuoteRequestResponseTransfer
     {
         $messageTransfer = (new MessageTransfer())

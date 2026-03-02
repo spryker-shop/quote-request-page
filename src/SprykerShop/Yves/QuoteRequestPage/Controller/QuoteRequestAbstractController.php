@@ -162,11 +162,6 @@ class QuoteRequestAbstractController extends AbstractController
         return $quoteRequestResponseTransfer->getQuoteRequest();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteRequestResponseTransfer $quoteRequestResponseTransfer
-     *
-     * @return void
-     */
     protected function handleResponseErrors(QuoteRequestResponseTransfer $quoteRequestResponseTransfer): void
     {
         foreach ($quoteRequestResponseTransfer->getMessages() as $messageTransfer) {
