@@ -33,6 +33,7 @@
         "spryker/testify": "*"
     },
     "suggest": {
+        "spryker-feature/purchasing-control": "Add the module if you want to display the cost center and budget selector on the quote request details and edit pages.",
         "spryker-shop/cart-page": "If you use shipment or shipment price customization during quote request: ^3.16.0",
         "spryker-shop/checkout-page": "If you use shipment selection for quote requests or want to customize checkout steps during quote request: ^3.12.0",
         "spryker-shop/configurable-bundle-widget": "If you want to use configurable bundle widget functionality",

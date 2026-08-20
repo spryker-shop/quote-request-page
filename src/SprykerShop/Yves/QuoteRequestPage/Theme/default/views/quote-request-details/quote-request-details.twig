@@ -80,6 +80,12 @@
         } only %}
     {% endblock %}
 
+    {% block costCenter %}
+        {% if isLatestVersion %}
+            {% widget 'QuoteRequestCostCenterSelectorWidget' args [data.quoteRequest] only %}{% endwidget %}
+        {% endif %}
+    {% endblock %}
+
     {% set buttonBackClass = 'button button--expand button--hollow' %}
     {% set buttonCancelClass = 'button button--expand' %}
     {% set buttonReviseClass = 'button button--expand button--hollow' %}

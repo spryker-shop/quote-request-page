@@ -29,6 +29,11 @@
 {% block content %}
     {% set quote = data.quoteRequest.latestVersion.quote %}
 
+    {% block costCenter %}
+        {% widget 'QuoteRequestCostCenterSelectorWidget'
+            args [data.quoteRequest, 'company/cost-center/update-quote-request-from-edit'] only %}{% endwidget %}
+    {% endblock %}
+
     {{ parent() }}
 {% endblock %}
 
