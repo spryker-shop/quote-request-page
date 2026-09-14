@@ -72,8 +72,8 @@ class DeliveryDateMetadataFieldPlugin extends AbstractPlugin implements QuoteReq
 
     protected function createDeliveryDateConstraint(): Constraint
     {
-        return new Callback([
-            'callback' => function ($deliveryDate, ExecutionContextInterface $context) {
+        return new Callback(
+            callback: function ($deliveryDate, ExecutionContextInterface $context) {
                 if (!$deliveryDate) {
                     return;
                 }
@@ -82,7 +82,7 @@ class DeliveryDateMetadataFieldPlugin extends AbstractPlugin implements QuoteReq
                     $context->addViolation(static::GLOSSARY_KEY_DATE_VIOLATION);
                 }
             },
-        ]);
+        );
     }
 
     protected function createDateTimeModelTransformer(): CallbackTransformer
