@@ -16,6 +16,9 @@ use Generated\Shared\Transfer\QuoteRequestVersionFilterTransfer;
 use Generated\Shared\Transfer\QuoteResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
+/**
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ */
 class QuoteRequestPageToQuoteRequestClientBridge implements QuoteRequestPageToQuoteRequestClientInterface
 {
     /**
