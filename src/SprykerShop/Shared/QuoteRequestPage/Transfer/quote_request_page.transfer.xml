@@ -100,6 +100,15 @@
 
     <transfer name="Item">
         <property name="shipment" type="Shipment"/>
+        <property name="sku" type="string"/>
+        <property name="abstractSku" type="string"/>
+        <property name="name" type="string"/>
+        <property name="unitPrice" type="int"/>
+        <property name="quantity" type="int"/>
+        <property name="brand" type="string" description="Brand of the product: its brand attribute in the order of the product storage, concrete localized over concrete over abstract localized over abstract, the localized ones in the current locale; set when the cart items are expanded."/>
+        <property name="abstractName" type="string" description="The name of the abstract product."/>
+        <property name="selectedVariantAttributes" type="array" singular="selectedVariantAttribute" description="The super attributes of the concrete product, attribute key to value, ordered by attribute key as strings, e.g. {&quot;color&quot;: &quot;Red&quot;, &quot;storage_capacity&quot;: &quot;64 GB&quot;}; set when the item is added to the cart, and from the order item's super attributes when an order is read."/>
+        <property name="categoryPath" type="string[]" singular="categoryName" description="The category names of the product, top level first, without the root category: set when the item is added to the cart, in the locale of that moment, and read from storage when the order details page shows an order item."/>
     </transfer>
 
     <transfer name="Shipment">

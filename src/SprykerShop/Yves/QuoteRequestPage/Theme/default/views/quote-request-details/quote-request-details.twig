@@ -170,3 +170,48 @@
         </a>
     {% endblock %}
 {%- endmacro -%}
+
+{% block eventTracker %}
+    {# The tracking data are built only while the storefront tracks user actions: the traceable event widget is registered and the visitor has not turned the tracking off. #}
+    {% set isUserActionTrackingEnabled = findWidget('TraceableEventWidget').parameters.isUserActionTrackingEnabled ?? false %}
+
+    {% if isUserActionTrackingEnabled and data.isQuoteRequestReady and isLatestVersion %}
+        {# Converting the quote request replaces the cart with the items of its latest version; the convert action is shown, and tracked, only on that version. The price in cents. The quote stores the selected attributes and the category path of the items. #}
+        {% set trackingProducts = [] %}
+        {% for item in data.version.quote.items %}
+            {% set trackingProducts = trackingProducts | merge([{
+                sku: item.sku,
+                abstractSku: item.abstractSku | default(null),
+                name: item.name,
+                abstractName: item.abstractName | default(null),
+                brand: item.brand | default(null),
+                variant: item.selectedVariantAttributes | default([]) | reduce((values, value) => values | merge([value]), []),
+                categories: item.categoryPath | default([]) | map(categoryName => { name: categoryName }),
+                price: can('SeePricePermissionPlugin') ? item.unitPrice : null,
+                quantity: item.quantity,
+            }]) %}
+        {% endfor %}
+
+        {% set events = {
+            list: events.list | merge([
+                {
+                    event: 'ADD_TO_CART',
+                    name: 'click',
+                    triggers: [
+                        {
+                            selector: 'a[href*="/quote-request/convert-to-cart/"]',
+                            data: {
+                                products: {
+                                    value: trackingProducts,
+                                },
+                            },
+                        },
+                    ],
+                },
+            ]),
+            data: events.data,
+        } %}
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}
